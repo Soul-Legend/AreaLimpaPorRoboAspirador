@@ -1,6 +1,8 @@
 # AreaLimpaPorRoboAspirador
 Código desenvolvido para um trabalho da disciplina de Estrutura de Dados
 
+Grupo: Pedro Taglialenha, Matheus Bigolin
+
 ## Enunciado
 
 Este projeto consiste na utilização de estruturas lineares, vistas até o momento no curso, e aplicação de conceitos de pilha e/ou fila para o processamento de arquivos XML contendo matrizes binárias que representam cenários de ação de um robô aspirador. A implementação deverá resolver dois problemas (listados a seguir), e os resultados deverão ser formatados em saída padrão de tela de modo que possam ser automaticamente avaliados no VPL.
