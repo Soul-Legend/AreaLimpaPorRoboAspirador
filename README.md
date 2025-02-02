@@ -59,3 +59,40 @@ Para a determinação da área a ser limpa, é necessário identificar quantos p
             na coordenada de cada vizinho selecionado, na imagem R, atribuir 1
 
 O conteúdo final da matriz R corresponde ao resultado da reconstrução. A quantidade de 1 (uns) deste único componente conexo é a resposta do segundo problema.
+
+## Lógica do código
+O código foi organizado em funções que abordam diferentes aspectos do processamento de arquivos XML e da determinação da área de limpeza do robô.
+
+### VALIDAÇÃO DO ARQUIVO XML
+A função esta_valido_xml é responsável por verificar se o arquivo XML está bem formado, ou seja, se as marcações estão aninhadas e fechadas corretamente.
+	Uma pilha é utilizada para acompanhar as marcações encontradas no arquivo. Quando uma marcação de abertura é encontrada, seu identificador é empilhado. Quando uma marcação de fechamento é encontrada, o código verifica se o identificador corresponde ao identificador no topo da pilha. Erros são tratados, caso contrário.
+	A função percorre o arquivo XML em busca de marcações de abertura e fechamento e retorna verdadeiro se o arquivo estiver bem formado e falso se houver problemas de aninhamento ou fechamento.
+
+### EXTRAÇÃO DE CENÁRIOS
+A função obter_cenarios é responsável por extrair informações sobre os cenários do arquivo XML, incluindo seus nomes, dimensões, matrizes e posições iniciais do robô.
+	Ela procura por marcações <cenario> no XML, extrai o conteúdo de cada cenário e analisa os valores de altura, largura, x e y, além da matriz que representa o cenário.
+	Os dados extraídos são organizados em uma estrutura de dados que facilita o processamento posterior.
+
+### DETERMINAÇÃO DA ÁREA DE LIMPEZA
+A função calcular_area_limpa é responsável por determinar a área que o robô deve limpar em um cenário.
+	Ela utiliza uma fila (FIFO) para realizar uma busca em largura na matriz, começando pela posição inicial do robô.
+	À medida que a busca se expande, os pontos visitados são marcados como já processados na matriz. A função continua até que todos os pontos conectados à posição inicial tenham sido visitados.
+	A quantidade de pontos visitados representa a área que o robô deve limpar.
+
+### LEITURA DE ARQUIVO
+A função ler_arquivo lida com a leitura do conteúdo do arquivo XML. Ela recebe o nome do arquivo como entrada e retorna o conteúdo em formato de string.
+
+### FLUXO PRINCIPAL 
+O fluxo principal do programa está contido na função main. Ele lê o nome do arquivo XML da entrada padrão, lê o conteúdo do arquivo usando a função ler_arquivo e, em seguida, executa a validação com esta_valido_xml.
+	Se o arquivo XML for válido, o código extrai informações dos cenários usando obter_cenarios e, para cada cenário, calcula a área de limpeza com calcular_area_limpa. Os resultados são impressos na saída padrão.
+
+## Fluxogramas
+
+### FLUXOGRAMA DA VALIDAÇÃO DO XML
+![image](https://github.com/user-attachments/assets/f615e913-4070-4cc1-ab78-39d8a39cc7fa)
+
+### FLUXOGRAMA DA DETERMINAÇÃO DA ÁREA DE LIMPEZA
+![image](https://github.com/user-attachments/assets/1e1d055b-c629-4e38-85ac-54aceaf95a43)
+
+
+
